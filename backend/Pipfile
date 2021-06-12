@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 django = "*"
 djangorestframework = "*"
+django-cors-headers = "*"
+PyJWT="1.7.1"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 autopep8 = "*"
