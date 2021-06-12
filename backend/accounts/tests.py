@@ -1,5 +1,6 @@
 from accounts.models import Account
 from django.test import TestCase
+from django.urls import reverse
 
 
 class TestAccounts(TestCase):
@@ -49,3 +50,18 @@ class TestAccounts(TestCase):
             Account.objects.get(email=email),
             admin
         )
+
+
+class TestAPI(TestCase):
+    def test_register(self):
+        response = self.client.post(
+            reverse("register_supplier_apiview"), data={
+                "email": "abc@example.com",
+                "business_name": "abc@example.com",
+                "business_address": "abc@example.com",
+                "password": "abc@example.com",
+                "password2": "abc@example.com",
+                "representative_full_name": "abc@example.com",
+            }
+        )
+        self.assertEqual(response.status_code, 201)
