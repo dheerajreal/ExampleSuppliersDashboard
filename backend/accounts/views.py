@@ -1,6 +1,6 @@
-from accounts.models import Account
+from accounts.models import Account, SupplierRepresentatives
 from rest_framework import generics
-from .serializers import AccountSerializer, RegisterSerializer
+from .serializers import AccountSerializer, RegisterSerializer, SupplierProfileSerializer
 from rest_framework import permissions
 
 
@@ -11,6 +11,21 @@ class RegisterView(generics.CreateAPIView):
 
 
 register_supplier_apiview = RegisterView.as_view()
+
+
+class SupplierProfileView(generics.RetrieveUpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = SupplierProfileSerializer
+
+    def get_object(self):
+
+        supplier = Account.objects.get(
+            email=self.request.user.email
+        )
+        return SupplierRepresentatives.objects.get(supplier=supplier)
+
+
+supplier_profile_view = SupplierProfileView.as_view()
 
 
 class AccountListView(generics.ListAPIView):
