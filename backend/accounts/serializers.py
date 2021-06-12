@@ -43,3 +43,17 @@ class RegisterSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return account
+
+
+class AccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = (
+            'email',
+            'business_name',
+            'business_address'
+        )
+        extra_kwargs = {
+            'business_name': {'required': True},
+            'business_address': {'required': True}
+        }
