@@ -105,3 +105,22 @@ class Account(AccountBase):
     """Model for Accounts"""
     class Meta(AccountBase.Meta):
         swappable = 'AUTH_USER_MODEL'
+
+
+class SupplierRepresentatives(models.Model):
+    supplier = models.OneToOneField(
+        Account, on_delete=models.CASCADE, related_name="account")
+    primary_full_name = models.CharField(max_length=150, blank=True, null=True)
+    primary_email = models.EmailField(blank=True, null=True)
+    primary_phone = models.CharField(max_length=20, blank=True, null=True)
+    secondary_full_name = models.CharField(
+        max_length=150, blank=True, null=True)
+    secondary_email = models.EmailField(blank=True, null=True)
+    secondary_phone = models.CharField(max_length=20, blank=True, null=True)
+    products = models.ManyToManyField(
+        "ProductService", related_name="products_services"
+    )
+
+
+class ProductService(models.Model):
+    name = models.CharField(max_length=150)
