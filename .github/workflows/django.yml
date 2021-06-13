@@ -1,0 +1,30 @@
+name: tests
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend/
+    steps:
+      - name: Check out source code
+        uses: actions/checkout@v2
+
+      - name: install python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+          architecture: "x64"
+
+      - name: flake8
+        run: pip install flake8 && flake8 --exclude 'venv,.venv,env,.env' --statistics --count --ignore=E501
+      - run: pip install -r requirements.txt
+      - name: django test
+        run: ./manage.py test
