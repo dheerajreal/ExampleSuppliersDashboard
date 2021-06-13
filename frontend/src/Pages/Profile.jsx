@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import Dummycontent from "../Components/Dummycontent";
+import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import url from "../Utils/url";
 
@@ -248,6 +249,7 @@ const Profile = () => {
             </button>
           </form>
         </div>
+        <Footer />
       </>
     );
   }

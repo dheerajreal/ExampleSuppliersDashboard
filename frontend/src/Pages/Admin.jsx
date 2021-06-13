@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import url from "../Utils/url";
 
@@ -129,6 +130,7 @@ const Admin = () => {
             </tbody>
           </table>
         </div>
+        <Footer />
       </>
     );
   }
