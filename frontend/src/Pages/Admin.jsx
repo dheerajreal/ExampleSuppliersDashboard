@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
+import Navbar from "../Components/Navbar";
 import url from "../Utils/url";
 
 const Admin = () => {
   const refresh_token = localStorage.getItem("refresh_token");
   const history = useHistory();
+  const businessName = localStorage.getItem("business_name");
 
   useEffect(() => {
     axios
@@ -38,12 +40,20 @@ const Admin = () => {
       });
   }, [history]);
 
-
-  
   if (!refresh_token) {
     return <Redirect to="/login" />;
   } else {
-    return <h1>hi admin</h1>;
+    return (
+      <>
+        <Navbar />
+
+        <div className="container">
+          <h1>Hello, Admin</h1>
+          <h2>{businessName}</h2>
+        </div>
+        
+      </>
+    );
   }
 };
 
