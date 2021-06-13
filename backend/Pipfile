@@ -9,6 +9,11 @@ djangorestframework = "*"
 django-cors-headers = "*"
 PyJWT="1.7.1"
 djangorestframework-simplejwt = "*"
+gunicorn = "*"
+python-decouple = "*"
+psycopg2 = "*"
+psycopg2-binary = "*"
+dj-database-url = "*"
 
 [dev-packages]
 autopep8 = "*"
