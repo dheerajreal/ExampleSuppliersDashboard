@@ -70,7 +70,7 @@ class TestAPI(TestCase):
     def test_index(self):
         response = self.client.get(reverse("index"))
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, "docs/")
+        self.assertEqual(response.url, reverse("schema-swagger-ui"))
 
     def test_permissions(self):
         myaccountpage = self.client.get(reverse("self_account_view"))

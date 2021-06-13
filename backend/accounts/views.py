@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions
+from django.urls import reverse
 from django.shortcuts import get_object_or_404, redirect
 from accounts.models import Account, SupplierRepresentatives
 
@@ -7,7 +8,7 @@ from .serializers import (AccountSerializer, RegisterSerializer,
 
 
 def index(request):
-    return redirect("docs/")
+    return redirect(reverse("schema-swagger-ui"))
 
 
 class RegisterView(generics.CreateAPIView):
