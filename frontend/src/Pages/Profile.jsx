@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import Dummycontent from "../Components/Dummycontent";
 import Navbar from "../Components/Navbar";
 import url from "../Utils/url";
@@ -102,11 +103,11 @@ const Profile = () => {
         .then((data) => {
           console.log(data);
           setFormEditingDisabled(true);
-          alert("updated");
+          toast.success("successfully updated");
         })
         .catch((err) => {
-          console.log(err);
-          alert("error occurred");
+          console.log(JSON.stringify(err));
+          toast.error(`An Error occurred`);
         });
     }
   };

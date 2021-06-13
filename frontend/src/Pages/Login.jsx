@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import url from "../Utils/url";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -25,12 +26,13 @@ const Login = () => {
           //   console.log(data);
           localStorage.setItem("access_token", data.access);
           localStorage.setItem("refresh_token", data.refresh);
+          toast.success("Login Success");
           history.push("/");
         })
 
         .catch((err) => {
-          console.log(err.response.data.detail);
-          alert(`Failed login: ${err.response.data.detail}`);
+          // console.log(err.response.data.detail);
+          toast.dark(`Failed login: ${err.response.data.detail}`);
         });
     }
   };

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import url from "../Utils/url";
 
 const Signup = () => {
@@ -34,18 +35,23 @@ const Signup = () => {
             { "content-type": "application/json" }
           )
           .then((resp) => resp.data)
-          .then((data) => console.log(data))
-          .then(() => history.push("/login"))
+          .then((data) => {
+            console.log(data);
+            toast.success("Signup success");
+            history.push("/login");
+          })
           .catch((err) => {
             console.log(err.response.data);
             if (err.response.data.email) {
-              alert(`Failed signup: Email already in use`);
+              toast.error(`Failed signup: ${err.response.data.email}`);
             } else {
-              alert(`Failed signup: ${JSON.stringify(err.response.data)}`);
+              toast.error(
+                `Failed signup: ${JSON.stringify(err.response.data)}`
+              );
             }
           });
       } else {
-        alert("both passwords don't match");
+        toast.error("Error: both passwords don't match");
       }
     }
   };
