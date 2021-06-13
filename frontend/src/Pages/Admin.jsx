@@ -65,7 +65,7 @@ const Admin = () => {
         <Navbar />
 
         <div className="container">
-          <h1>Hello, {businessName == "null" ? "" : businessName} Admin</h1>
+          <h1>Hello, {businessName === "null" ? "" : businessName} Admin</h1>
           <h2> </h2>
         </div>
         <br />

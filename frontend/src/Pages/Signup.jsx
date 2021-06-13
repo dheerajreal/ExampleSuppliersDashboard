@@ -72,6 +72,7 @@ const Signup = () => {
             placeholder="Business name"
             required
           />
+          <div className="invalid-feedback">Required </div>
         </div>
         <div className="form-group mb-4 mt-4">
           <label>Business Address</label>
@@ -84,6 +85,7 @@ const Signup = () => {
             placeholder="Business Address"
             required
           />
+          <div className="invalid-feedback">Required </div>
         </div>
         <div className="form-group mb-4 mt-4">
           <label>Representative full name</label>
@@ -96,6 +98,7 @@ const Signup = () => {
             placeholder="Representative full name"
             required
           />
+          <div className="invalid-feedback">Required </div>
         </div>
         <div className="form-group mb-4 mt-4">
           <label>Email address</label>
@@ -142,9 +145,7 @@ const Signup = () => {
             pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$"
           />
           <div className="invalid-feedback">
-            Please enter a password with minimum eight characters, containing
-            one digit, one special character, one uppercase letter, one
-            lowercase letter
+            Enter the same password you have entered above
           </div>
         </div>
         <br />
