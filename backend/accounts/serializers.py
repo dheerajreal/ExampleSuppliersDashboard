@@ -8,6 +8,7 @@ from .models import Account, SupplierRepresentatives
 
 
 class RegisterSerializer(serializers.ModelSerializer):
+    """Serializer for registration of supplier accounts"""
     email = serializers.EmailField(
         required=True,
         validators=[UniqueValidator(queryset=Account.objects.all())]
@@ -67,6 +68,7 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class AccountSerializer(serializers.ModelSerializer):
+    """Serializer for accounts"""
 
     class Meta:
         model = Account
@@ -84,6 +86,7 @@ class AccountSerializer(serializers.ModelSerializer):
 
 
 class SupplierProfileSerializer(serializers.ModelSerializer):
+    """serializer for extra details on suppliers"""
     supplier = AccountSerializer(read_only=True)
 
     class Meta:

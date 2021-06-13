@@ -108,6 +108,7 @@ class Account(AccountBase):
 
 
 class SupplierRepresentatives(models.Model):
+    """More details about suppliers"""
     supplier = models.OneToOneField(
         Account, on_delete=models.CASCADE, related_name="account")
     primary_full_name = models.CharField(max_length=150, blank=True, null=True)
@@ -124,4 +125,5 @@ class SupplierRepresentatives(models.Model):
 
 
 class ProductService(models.Model):
+    """Products and services sold by suppliers"""
     name = models.CharField(max_length=150)

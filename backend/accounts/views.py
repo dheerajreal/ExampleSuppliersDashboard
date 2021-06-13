@@ -7,6 +7,7 @@ from .serializers import (AccountSerializer, RegisterSerializer,
 
 
 class RegisterView(generics.CreateAPIView):
+    """Register a new supplier"""
     queryset = Account.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = RegisterSerializer
@@ -16,6 +17,7 @@ register_supplier_apiview = RegisterView.as_view()
 
 
 class SupplierProfileView(generics.RetrieveUpdateAPIView):
+    """retrieve and update details on supplier representatives"""
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = SupplierProfileSerializer
 
@@ -31,6 +33,7 @@ supplier_profile_view = SupplierProfileView.as_view()
 
 
 class SelfAccountView(generics.RetrieveUpdateAPIView):
+    """retrieve and update details on supplier account"""
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = AccountSerializer
 
@@ -46,6 +49,7 @@ self_account_view = SelfAccountView.as_view()
 
 
 class AccountListView(generics.ListAPIView):
+    """list all accounts [Admin only]"""
     queryset = Account.objects.all()
     permission_classes = [permissions.IsAdminUser]
     serializer_class = AccountSerializer
@@ -55,6 +59,7 @@ list_account_apiview = AccountListView.as_view()
 
 
 class AccountRUDView(generics.RetrieveUpdateDestroyAPIView):
+    """retrieve, update or delete accounts [Admin only]"""
     queryset = Account.objects.all()
     permission_classes = [permissions.IsAdminUser]
     serializer_class = AccountSerializer
