@@ -135,11 +135,12 @@ const Profile = () => {
                   <input
                     value={primaryEmail}
                     onChange={(e) => setPrimaryEmail(e.target.value)}
-                    type="email"
+                    type="text"
                     className="form-control"
                     placeholder="Enter email"
                     required
                     disabled={formEditingDisabled}
+                    pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                   />
                   <div className="invalid-feedback">Please enter an email</div>
                 </div>
@@ -151,7 +152,7 @@ const Profile = () => {
                     onChange={(e) => setPrimaryName(e.target.value)}
                     type="text"
                     className="form-control"
-                    placeholder="Enter password"
+                    placeholder="Enter Full Name"
                     required
                     disabled={formEditingDisabled}
                   />
@@ -165,7 +166,7 @@ const Profile = () => {
                     onChange={(e) => setPrimaryPhone(e.target.value)}
                     type="text"
                     className="form-control"
-                    placeholder="Enter password"
+                    placeholder="Enter Phone Number"
                     required
                     disabled={formEditingDisabled}
                     pattern="^[0-9+-]{8,20}$" // 8 or more characters, + symbol and - separator
@@ -187,11 +188,12 @@ const Profile = () => {
                   <input
                     value={secondaryEmail}
                     onChange={(e) => setSecondaryEmail(e.target.value)}
-                    type="email"
+                    type="text"
                     className="form-control"
                     placeholder="Enter email"
                     required
                     disabled={formEditingDisabled}
+                    pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                   />
                   <div className="invalid-feedback">Please enter an email</div>
                 </div>
@@ -203,7 +205,7 @@ const Profile = () => {
                     onChange={(e) => setSecondaryName(e.target.value)}
                     type="text"
                     className="form-control"
-                    placeholder="Enter password"
+                    placeholder="Enter Full Name"
                     required
                     disabled={formEditingDisabled}
                   />
@@ -217,7 +219,7 @@ const Profile = () => {
                     onChange={(e) => setSecondaryPhone(e.target.value)}
                     type="text"
                     className="form-control"
-                    placeholder="Enter password"
+                    placeholder="Enter Phone Number"
                     required
                     disabled={formEditingDisabled}
                     pattern="^[0-9+-]{8,20}$" // 8 or more characters, + symbol and - separator

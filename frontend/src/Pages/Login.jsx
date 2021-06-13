@@ -47,10 +47,12 @@ const Login = () => {
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            type="email"
+            type="text"
             className="form-control"
             placeholder="Enter email"
             required
+            pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+
           />
           <div className="invalid-feedback">Please enter an email</div>
         </div>
