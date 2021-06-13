@@ -47,7 +47,7 @@ const Profile = () => {
       });
   }, [history]);
 
-  
+
   useEffect(() => {
     axios
       .get(url + "/profile", {
@@ -73,11 +73,163 @@ const Profile = () => {
       });
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log(e.target.checkValidity());
+    e.target.className = "was-validated";
+
+    if (e.target.checkValidity()) {
+      let formdata = {
+        primary_full_name: primaryName,
+        primary_email: primaryEmail,
+        primary_phone: primaryPhone,
+        secondary_full_name: secondaryName,
+        secondary_email: secondaryEmail,
+        secondary_phone: secondaryPhone,
+      };
+      console.log(formdata);
+      // axios
+      //   .put(url + "/profile/", { ...formdata })
+      //   .then((resp) => resp.data)
+      //   .then((data) => {
+      //     console.log(data);
+      //   })
+    }
+  };
 
   if (!refresh_token) {
     return <Redirect to="/login" />;
   } else {
-    return <h1>hi supplier</h1>;
+    return (
+      <>
+        <Navbar />
+        <div className="container">
+          <h1>Hello, supplier</h1>
+          <h2>{businessName}</h2>
+        </div>
+
+        <div className="container">
+          <form onSubmit={handleSubmit} noValidate className="needs-validation">
+            <div className="row">
+              <div className="col">
+                <h3 className="mb-4 mt-4">Primary Representative</h3>
+                <div className="form-group mb-4 mt-4">
+                  <label>Email address</label>
+                  <br />
+                  <input
+                    value={primaryEmail}
+                    onChange={(e) => setPrimaryEmail(e.target.value)}
+                    type="email"
+                    className="form-control"
+                    placeholder="Enter email"
+                    required
+                    disabled={formEditingDisabled}
+                  />
+                  <div className="invalid-feedback">Please enter an email</div>
+                </div>
+                <div className="form-group mb-4 mt-4">
+                  <label>Name</label>
+                  <br />
+                  <input
+                    value={primaryName}
+                    onChange={(e) => setPrimaryName(e.target.value)}
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter password"
+                    required
+                    disabled={formEditingDisabled}
+                  />
+                  <div className="invalid-feedback">Please Enter your Name</div>
+                </div>
+                <div className="form-group mb-4 mt-4">
+                  <label>Phone number</label>
+                  <br />
+                  <input
+                    value={primaryPhone}
+                    onChange={(e) => setPrimaryPhone(e.target.value)}
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter password"
+                    required
+                    disabled={formEditingDisabled}
+                    pattern="^[0-9+-]{8,20}$" // 8 or more characters, + symbol and - separator
+                  />
+                  <div className="invalid-feedback">
+                    Please Enter your Phone number
+                  </div>
+                </div>
+                <br />
+
+                <br />
+              </div>
+              <div className="col">
+                <h3 className="mb-4 mt-4">Secondary Representative</h3>
+                <div className="form-group mb-4 mt-4">
+                  <label>Email address</label>
+                  <br />
+                  <input
+                    value={secondaryEmail}
+                    onChange={(e) => setSecondaryEmail(e.target.value)}
+                    type="email"
+                    className="form-control"
+                    placeholder="Enter email"
+                    required
+                    disabled={formEditingDisabled}
+                  />
+                  <div className="invalid-feedback">Please enter an email</div>
+                </div>
+                <div className="form-group mb-4 mt-4">
+                  <label>Name</label>
+                  <br />
+                  <input
+                    value={secondaryName}
+                    onChange={(e) => setSecondaryName(e.target.value)}
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter password"
+                    required
+                    disabled={formEditingDisabled}
+                  />
+                  <div className="invalid-feedback">Please Enter your Name</div>
+                </div>
+                <div className="form-group mb-4 mt-4">
+                  <label>Phone number</label>
+                  <br />
+                  <input
+                    value={secondaryPhone}
+                    onChange={(e) => setSecondaryPhone(e.target.value)}
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter password"
+                    required
+                    disabled={formEditingDisabled}
+                    pattern="^[0-9+-]{8,20}$" // 8 or more characters, + symbol and - separator
+                  />
+                  <div className="invalid-feedback">
+                    Please Enter your Phone number
+                  </div>
+                </div>
+                <br />
+
+                <br />
+              </div>
+            </div>
+
+            <button
+              type="button"
+              className="mb-4 mt-4 btn btn-primary"
+              style={{ marginRight: 20 }}
+              onClick={(e) => setFormEditingDisabled(!formEditingDisabled)}
+            >
+              Edit
+            </button>
+            <button type="submit" className="mb-4 mt-4 btn btn-primary">
+              Submit
+            </button>
+          </form>
+        </div>
+      </>
+    );
   }
 };
 
