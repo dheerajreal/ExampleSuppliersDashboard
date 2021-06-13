@@ -1,6 +1,7 @@
-from accounts.models import Account
 from django.test import TestCase
 from django.urls import reverse
+
+from accounts.models import Account
 
 
 class TestAccounts(TestCase):
@@ -59,8 +60,8 @@ class TestAPI(TestCase):
                 "email": "abc@example.com",
                 "business_name": "abc@example.com",
                 "business_address": "abc@example.com",
-                "password": "abc@example.com",
-                "password2": "abc@example.com",
+                "password": "abcdeA1@",
+                "password2": "abcdeA1@",
                 "representative_full_name": "abc@example.com",
             }
         )

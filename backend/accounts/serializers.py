@@ -1,3 +1,5 @@
+import re
+
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
@@ -38,6 +40,15 @@ class RegisterSerializer(serializers.ModelSerializer):
         if attrs['password'] != attrs['password2']:
             raise serializers.ValidationError(
                 {"password": "Password fields didn't match."})
+        pw = attrs['password']
+
+        if not bool(re.match(r"^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$", pw)):
+
+            raise serializers.ValidationError(
+                {
+                    "password": "Please enter a password with minimum eight characters, containing one digit, one special character, one uppercase letter, one lowercase letter."
+                }
+            )
 
         return attrs
 
@@ -56,13 +67,16 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class AccountSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Account
-        fields = (
+        read_only_fields = ['is_staff', 'is_supplier']
+        fields = [
             'email',
             'business_name',
-            'business_address'
-        )
+            'business_address',
+
+        ] + read_only_fields
         extra_kwargs = {
             'business_name': {'required': True},
             'business_address': {'required': True}
@@ -70,10 +84,12 @@ class AccountSerializer(serializers.ModelSerializer):
 
 
 class SupplierProfileSerializer(serializers.ModelSerializer):
+    supplier = AccountSerializer(read_only=True)
 
     class Meta:
         model = SupplierRepresentatives
         fields = [
+            "supplier",
             'primary_full_name',
             'primary_phone',
             'primary_email',
