@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import url from "../Utils/url";
@@ -8,6 +8,7 @@ const Admin = () => {
   const refresh_token = localStorage.getItem("refresh_token");
   const history = useHistory();
   const businessName = localStorage.getItem("business_name");
+  const [accounts, setAccounts] = useState([]);
 
   useEffect(() => {
     axios
@@ -40,6 +41,20 @@ const Admin = () => {
       });
   }, [history]);
 
+  useEffect(() => {
+    axios
+      .get(url + "/accounts", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      })
+      .then((data) => setAccounts(data.data));
+  }, []);
+
+  // useEffect(() => {
+  //   console.log(accounts);
+  // }, [accounts]);
+
   if (!refresh_token) {
     return <Redirect to="/login" />;
   } else {
@@ -48,10 +63,38 @@ const Admin = () => {
         <Navbar />
 
         <div className="container">
-          <h1>Hello, Admin</h1>
-          <h2>{businessName}</h2>
+          <h1>Hello, {businessName == "null" ? "" : businessName} Admin</h1>
+          <h2> </h2>
         </div>
-        
+        <br />
+        <hr />
+        <div className="container">
+          <table className="table table-bordered ">
+            <thead>
+              <tr>
+                <th scope="row">id</th>
+                <th>Business Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              {accounts.map((acc) => {
+                return (
+                  <tr key={acc.pk}>
+                    <th scope="row">{acc.pk}</th>
+                    <td>{acc.business_name}</td>
+                    <td>{acc.email}</td>
+                    <td>{acc.business_address}</td>
+                    <td>{acc.is_supplier ? "Supplier" : "Staff"}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          
+        </div>
       </>
     );
   }
