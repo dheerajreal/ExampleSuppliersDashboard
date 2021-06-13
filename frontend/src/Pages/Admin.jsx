@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import Navbar from "../Components/Navbar";
 import url from "../Utils/url";
 
@@ -77,6 +78,7 @@ const Admin = () => {
                 <th>Email</th>
                 <th>Address</th>
                 <th>Type</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -88,12 +90,44 @@ const Admin = () => {
                     <td>{acc.email}</td>
                     <td>{acc.business_address}</td>
                     <td>{acc.is_supplier ? "Supplier" : "Staff"}</td>
+                    <td>
+                      <button
+                        className="btn btn-sm btn-outline-danger"
+                        onClick={(e) => {
+                          let resp = window.confirm(
+                            "Do you really want to delete this supplier"
+                          );
+                          if (resp === true) {
+                            axios
+                              .delete(url + `/accounts/${acc.pk}/`, {
+                                headers: {
+                                  Authorization: `Bearer ${localStorage.getItem(
+                                    "access_token"
+                                  )}`,
+                                },
+                              })
+                              .then((data) => {
+                                console.log(data);
+                                toast.dark("Deletion success");
+                                setAccounts(
+                                  accounts.filter((item) => item !== acc)
+                                );
+                              })
+                              .catch((err) => {
+                                console.log(err);
+                                toast.error("Failed to delete");
+                              });
+                          }
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
-          
         </div>
       </>
     );
