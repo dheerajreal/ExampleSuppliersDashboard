@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
+import url from "../Utils/url";
 
 const Profile = () => {
   const refresh_token = localStorage.getItem("refresh_token");
@@ -8,7 +9,7 @@ const Profile = () => {
   const history = useHistory();
   useEffect(() => {
     axios
-      .get("http://localhost:8000/myaccount", {
+      .get(url + "/myaccount", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import url from "../Utils/url";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -29,7 +29,7 @@ const Signup = () => {
         console.log(formdata);
         axios
           .post(
-            "http://localhost:8000/register/",
+            url + "/register/",
             { ...formdata },
             { "content-type": "application/json" }
           )

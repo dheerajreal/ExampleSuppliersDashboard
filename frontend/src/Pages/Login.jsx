@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import url from "../Utils/url";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +19,7 @@ const Login = () => {
       };
       //   console.log(formdata);
       axios
-        .post("http://localhost:8000/api/token/", { ...formdata })
+        .post(url + "/api/token/", { ...formdata })
         .then((resp) => resp.data)
         .then((data) => {
           //   console.log(data);
