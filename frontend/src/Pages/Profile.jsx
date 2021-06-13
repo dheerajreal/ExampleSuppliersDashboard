@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
+import Dummycontent from "../Components/Dummycontent";
 import Navbar from "../Components/Navbar";
 import url from "../Utils/url";
 
@@ -47,7 +48,6 @@ const Profile = () => {
       });
   }, [history]);
 
-
   useEffect(() => {
     axios
       .get(url + "/profile", {
@@ -88,12 +88,26 @@ const Profile = () => {
         secondary_phone: secondaryPhone,
       };
       console.log(formdata);
-      // axios
-      //   .put(url + "/profile/", { ...formdata })
-      //   .then((resp) => resp.data)
-      //   .then((data) => {
-      //     console.log(data);
-      //   })
+      axios
+        .put(
+          url + "/profile/",
+          { ...formdata },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          }
+        )
+        .then((resp) => resp.data)
+        .then((data) => {
+          console.log(data);
+          setFormEditingDisabled(true);
+          alert("updated");
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("error occurred");
+        });
     }
   };
 
@@ -104,10 +118,11 @@ const Profile = () => {
       <>
         <Navbar />
         <div className="container">
-          <h1>Hello, supplier</h1>
-          <h2>{businessName}</h2>
+          <h1>Hello, {businessName}</h1>
         </div>
-
+        <br />
+        <Dummycontent />
+        <hr />
         <div className="container">
           <form onSubmit={handleSubmit} noValidate className="needs-validation">
             <div className="row">
@@ -155,7 +170,8 @@ const Profile = () => {
                     pattern="^[0-9+-]{8,20}$" // 8 or more characters, + symbol and - separator
                   />
                   <div className="invalid-feedback">
-                    Please Enter your Phone number
+                    Please Enter a valid Phone number, (at least 8 characters,
+                    dashes allowed)
                   </div>
                 </div>
                 <br />
@@ -206,7 +222,8 @@ const Profile = () => {
                     pattern="^[0-9+-]{8,20}$" // 8 or more characters, + symbol and - separator
                   />
                   <div className="invalid-feedback">
-                    Please Enter your Phone number
+                    Please Enter a valid Phone number, (at least 8 characters,
+                    dashes allowed)
                   </div>
                 </div>
                 <br />
