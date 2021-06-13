@@ -2,3 +2,5 @@
 *.pyc
 .vscode/ 
 Pipfile.lock
+frontend/src/Utils/axios.js
+.gitignore
