@@ -3,7 +3,7 @@ var url = "";
 if (process.env.REACT_APP_ENV === "development") {
   url = "http://localhost:8000";
 } else {
-  url = "http://localhost:8000";
+  url = "https://supplierdemo.herokuapp.com";
 }
 // console.log(url)
 export default url;
