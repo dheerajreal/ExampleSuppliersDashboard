@@ -45,7 +45,13 @@ const Home = () => {
   if (!refresh_token) {
     return <Redirect to="/login" />;
   } else {
-    return <h1>checking your account</h1>;
+    return (
+      <>
+        <div className="jumbotron mt-5 mx-auto">
+          <h1 class>...</h1>
+        </div>
+      </>
+    );
   }
 };
 
