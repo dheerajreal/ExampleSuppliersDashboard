@@ -1,10 +1,19 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
+import Navbar from "../Components/Navbar";
 import url from "../Utils/url";
 
 const Profile = () => {
   const refresh_token = localStorage.getItem("refresh_token");
+  const businessName = localStorage.getItem("business_name");
+  const [formEditingDisabled, setFormEditingDisabled] = useState(true);
+  const [primaryName, setPrimaryName] = useState("");
+  const [primaryEmail, setPrimaryEmail] = useState("");
+  const [primaryPhone, setPrimaryPhone] = useState("");
+  const [secondaryName, setSecondaryName] = useState("");
+  const [secondaryEmail, setSecondaryEmail] = useState("");
+  const [secondaryPhone, setSecondaryPhone] = useState("");
 
   const history = useHistory();
   useEffect(() => {
