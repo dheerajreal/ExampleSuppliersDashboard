@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import LogoBox from "../Components/LogoBox";
 import url from "../Utils/url";
 
 const Signup = () => {
@@ -57,6 +58,7 @@ const Signup = () => {
   };
   return (
     <div className="container mt-5 col-md-6">
+      <LogoBox />
       <form onSubmit={handleSubmit} noValidate className="needs-validation">
         <h3 className="mb-4 mt-4">SignUp</h3>
         <div className="form-group mb-4 mt-4">
