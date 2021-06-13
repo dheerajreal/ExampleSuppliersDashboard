@@ -23,8 +23,11 @@ jobs:
           python-version: "3.8"
           architecture: "x64"
 
-      - name: flake8
+      - name: flake8 Linter
         run: pip install flake8 && flake8 --exclude 'venv,.venv,env,.env' --statistics --count --ignore=E501
-      - run: pip install -r requirements.txt
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
+
       - name: django test
         run: ./manage.py test
