@@ -72,7 +72,7 @@ class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Account
-        read_only_fields = ['is_staff', 'is_supplier']
+        read_only_fields = ['pk', 'is_staff', 'is_supplier']
         fields = [
             'email',
             'business_name',
@@ -91,6 +91,8 @@ class SupplierProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SupplierRepresentatives
+        read_only_fields = ['pk']
+
         fields = [
             "supplier",
             'primary_full_name',
@@ -99,4 +101,4 @@ class SupplierProfileSerializer(serializers.ModelSerializer):
             'secondary_full_name',
             'secondary_phone',
             'secondary_email'
-        ]
+        ] + read_only_fields

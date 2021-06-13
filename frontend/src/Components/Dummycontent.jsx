@@ -6,32 +6,32 @@ const Dummycontent = () => {
     <div className="container mt-2">
       <div className="row">
         <div className="col-1">
-          <Link  >
+          <Link  to="/profile">
             <p>dummy</p>
           </Link>
         </div>
         <div className="col-1">
-          <Link  >
+           <Link  to="/profile">
             <p>dummy</p>
           </Link>
         </div>
         <div className="col-1">
-          <Link  >
+           <Link  to="/profile">
             <p>dummy</p>
           </Link>
         </div>
         <div className="col-1">
-          <Link  >
+           <Link  to="/profile">
             <p>dummy</p>
           </Link>
         </div>
         <div className="col-1">
-          <Link  >
+           <Link  to="/profile">
             <p>dummy</p>
           </Link>
         </div>
         <div className="col-1">
-          <Link  >
+           <Link  to="/profile">
             <p>dummy</p>
           </Link>
         </div>

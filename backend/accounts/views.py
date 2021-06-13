@@ -1,5 +1,5 @@
 from rest_framework import generics, permissions
-
+from django.shortcuts import get_object_or_404
 from accounts.models import Account, SupplierRepresentatives
 
 from .serializers import (AccountSerializer, RegisterSerializer,
@@ -23,10 +23,14 @@ class SupplierProfileView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
 
-        supplier = Account.objects.get(
+        account = Account.objects.get(
             email=self.request.user.email
         )
-        return SupplierRepresentatives.objects.get(supplier=supplier)
+        supplier = get_object_or_404(
+            SupplierRepresentatives.objects.all(),
+            supplier=account
+        )
+        return supplier
 
 
 supplier_profile_view = SupplierProfileView.as_view()

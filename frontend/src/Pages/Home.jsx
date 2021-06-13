@@ -48,7 +48,7 @@ const Home = () => {
     return (
       <>
         <div className="jumbotron mt-5 mx-auto">
-          <h1 class>...</h1>
+          <h1>redirecting</h1>
         </div>
       </>
     );
