@@ -1,7 +1,9 @@
+from rest_framework import generics, permissions
+
 from accounts.models import Account, SupplierRepresentatives
-from rest_framework import generics
-from .serializers import AccountSerializer, RegisterSerializer, SupplierProfileSerializer
-from rest_framework import permissions
+
+from .serializers import (AccountSerializer, RegisterSerializer,
+                          SupplierProfileSerializer)
 
 
 class RegisterView(generics.CreateAPIView):

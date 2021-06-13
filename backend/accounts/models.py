@@ -112,6 +112,7 @@ class SupplierRepresentatives(models.Model):
         Account, on_delete=models.CASCADE, related_name="account")
     primary_full_name = models.CharField(max_length=150, blank=True, null=True)
     primary_email = models.EmailField(blank=True, null=True)
+    # phone number entered might have dashes or other characters
     primary_phone = models.CharField(max_length=20, blank=True, null=True)
     secondary_full_name = models.CharField(
         max_length=150, blank=True, null=True)
