@@ -66,3 +66,31 @@ class TestAPI(TestCase):
             }
         )
         self.assertEqual(response.status_code, 201)
+
+    def test_index(self):
+        response = self.client.get(reverse("index"))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, "docs/")
+
+    def test_permissions(self):
+        myaccountpage = self.client.get(reverse("self_account_view"))
+        self.assertIn(myaccountpage.status_code, [401, 403])
+        myprofilepage = self.client.get(reverse("supplier_profile_view"))
+        self.assertIn(myprofilepage.status_code, [401, 403])
+
+        response = self.client.post(
+            reverse("register_supplier_apiview"), data={
+                "email": "abc@example.com",
+                "business_name": "abc@example.com",
+                "business_address": "abc@example.com",
+                "password": "abcdeA1@",
+                "password2": "abcdeA1@",
+                "representative_full_name": "abc@example.com",
+            }
+        )
+        self.assertEqual(response.status_code, 201)
+        self.client.login(email="abc@example.com", password="abcdeA1@")
+        myaccountpage = self.client.get(reverse("self_account_view"))
+        self.assertEqual(myaccountpage.status_code, 200)
+        myprofilepage = self.client.get(reverse("supplier_profile_view"))
+        self.assertEqual(myprofilepage.status_code, 200)

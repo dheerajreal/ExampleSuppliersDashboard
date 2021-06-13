@@ -1,9 +1,13 @@
 from rest_framework import generics, permissions
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from accounts.models import Account, SupplierRepresentatives
 
 from .serializers import (AccountSerializer, RegisterSerializer,
                           SupplierProfileSerializer)
+
+
+def index(request):
+    return redirect("docs/")
 
 
 class RegisterView(generics.CreateAPIView):
