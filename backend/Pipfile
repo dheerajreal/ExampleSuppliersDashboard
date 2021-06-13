@@ -13,6 +13,7 @@ python-decouple = "*"
 psycopg2 = "*"
 psycopg2-binary = "*"
 dj-database-url = "*"
+whitenoise = "*"
 
 [dev-packages]
 autopep8 = "*"
