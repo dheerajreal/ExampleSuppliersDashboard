@@ -47,6 +47,33 @@ const Profile = () => {
       });
   }, [history]);
 
+  
+  useEffect(() => {
+    axios
+      .get(url + "/profile", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+        setPrimaryEmail(data.data.primary_email || "");
+        setPrimaryName(data.data.primary_full_name || "");
+        setPrimaryPhone(data.data.primary_phone || "");
+        setSecondaryEmail(data.data.secondary_email || "");
+        setSecondaryName(data.data.secondary_full_name || "");
+        setSecondaryPhone(data.data.secondary_phone || "");
+      })
+      .then(() => {
+        console.log("done");
+      })
+      .catch((err) => {
+        console.log(err);
+        // history.push("/login");
+      });
+  }, []);
+
+
   if (!refresh_token) {
     return <Redirect to="/login" />;
   } else {
