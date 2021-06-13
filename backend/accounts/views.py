@@ -30,6 +30,21 @@ class SupplierProfileView(generics.RetrieveUpdateAPIView):
 supplier_profile_view = SupplierProfileView.as_view()
 
 
+class SelfAccountView(generics.RetrieveUpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = AccountSerializer
+
+    def get_object(self):
+        my_account = Account.objects.get(
+            email=self.request.user.email
+        )
+
+        return my_account
+
+
+self_account_view = SelfAccountView.as_view()
+
+
 class AccountListView(generics.ListAPIView):
     queryset = Account.objects.all()
     permission_classes = [permissions.IsAdminUser]
