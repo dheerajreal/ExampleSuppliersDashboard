@@ -57,12 +57,12 @@ const Signup = () => {
     }
   };
   return (
-    <div className="container mt-5 col-md-6">
+    <div className="container mt-5 col-10 col-sm-6 col-md-4">
       <LogoBox />
       <form onSubmit={handleSubmit} noValidate className="needs-validation">
-        <h3 className="mb-4 mt-4">SignUp</h3>
+        <h3 className="mb-4 mt-4">Signup</h3>
         <div className="form-group mb-4 mt-4">
-          <label>Business name</label>
+          <label className="text-uppercase">Business name</label>
           <br />
           <input
             value={businessName}
@@ -75,7 +75,7 @@ const Signup = () => {
           <div className="invalid-feedback">Required </div>
         </div>
         <div className="form-group mb-4 mt-4">
-          <label>Business Address</label>
+          <label className="text-uppercase">Business Address</label>
           <br />
           <input
             value={businessAddress}
@@ -88,7 +88,7 @@ const Signup = () => {
           <div className="invalid-feedback">Required </div>
         </div>
         <div className="form-group mb-4 mt-4">
-          <label>Representative full name</label>
+          <label className="text-uppercase">Representative full name</label>
           <br />
           <input
             value={representativeName}
@@ -101,7 +101,7 @@ const Signup = () => {
           <div className="invalid-feedback">Required </div>
         </div>
         <div className="form-group mb-4 mt-4">
-          <label>Email address</label>
+          <label className="text-uppercase">Email address</label>
           <br />
           <input
             value={email}
@@ -115,7 +115,7 @@ const Signup = () => {
           <div className="invalid-feedback">Please enter an email</div>
         </div>
         <div className="form-group mb-4 mt-4">
-          <label>Password</label>
+          <label className="text-uppercase">Password</label>
           <br />
           <input
             value={password}
@@ -133,7 +133,7 @@ const Signup = () => {
           </div>
         </div>
         <div className="form-group mb-4 mt-4">
-          <label>Confirm Password</label>
+          <label className="text-uppercase">Confirm Password</label>
           <br />
           <input
             value={password2}

@@ -39,12 +39,12 @@ const Login = () => {
   };
 
   return (
-    <div className="container mt-5 col-md-6">
+    <div className="container mt-5 col-10 col-sm-6 col-md-4">
       <LogoBox />
       <form onSubmit={handleSubmit} noValidate className="needs-validation">
         <h3 className="mb-4 mt-4">Login</h3>
         <div className="form-group mb-4 mt-4">
-          <label>Email address</label>
+          <label className="text-uppercase">Email address</label>
           <br />
           <input
             value={email}
@@ -58,7 +58,7 @@ const Login = () => {
           <div className="invalid-feedback">Please enter an email</div>
         </div>
         <div className="form-group mb-4 mt-4">
-          <label>Password</label>
+          <label className="text-uppercase">Password</label>
           <br />
           <input
             value={password}
@@ -75,10 +75,10 @@ const Login = () => {
             lowercase letter
           </div>
         </div>
-        <br />
-        <button type="submit" className="mb-4 mt-4 btn btn-primary btn-block">
+        <button type="submit" className="mb-4 btn btn-block btn-primary ">
           Submit
         </button>
+        <br />
         <br />
         <p>
           Don't have an account <Link to="/signup">Signup</Link>
