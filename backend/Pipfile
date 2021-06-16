@@ -17,6 +17,7 @@ whitenoise = "*"
 drf-yasg = "*"
 
 [dev-packages]
+coverage = "*"
 autopep8 = "*"
 flake8 = "*"
 

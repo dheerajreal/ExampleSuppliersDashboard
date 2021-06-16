@@ -1,0 +1,9 @@
+[run]
+source = accounts
+branch = False
+
+[report]
+omit = */migrations/*, */.venv/*,*/node_modules/*,*/.env/* , */tests.py
+show_missing = True
+#skip_covered = True
+#fail_under = 80
