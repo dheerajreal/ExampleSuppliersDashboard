@@ -15,6 +15,7 @@ const Admin = () => {
   const [page, setPage] = useState(1);
   const [previousPage, setPreviousPage] = useState("");
   const [nextPage, setNextPage] = useState("");
+  const [ordering, setOrdering] = useState("-pk");
 
   const pageNumberChange = (action) => {
     if (action === "increment" && nextPage) {
@@ -58,18 +59,31 @@ const Admin = () => {
 
   useEffect(() => {
     axios
-      .get(url + `/accounts?page=${page}&search=${search}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      })
+      .get(
+        url + `/accounts?page=${page}&ordering=${ordering}&search=${search}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
       .then((data) => {
         setAccounts(data.data.results);
         setNextPage(data.data.next);
         setPreviousPage(data.data.previous);
       });
-  }, [search, page]);
+  }, [search, page, ordering]);
 
+  const arrow = (desc, column) => {
+    return (
+      <span
+        onClick={(e) => setOrdering(`${desc && "-"}${column}`)}
+        style={{ cursor: "pointer" }}
+      >
+        {!desc ? "⬆" : "⬇"}
+      </span>
+    );
+  };
   // useEffect(() => {
   //   console.log(accounts);
   //   console.log(nextPage);
@@ -84,7 +98,7 @@ const Admin = () => {
         <Navbar />
 
         <div className="container">
-          <h1>Hello, {businessName === "null" ? "" : businessName} Admin</h1>
+          <h1>Hello, {businessName === "null" ? "Admin" : businessName} </h1>
           <h2> </h2>
         </div>
         <br />
@@ -109,11 +123,27 @@ const Admin = () => {
           <table className="table table-bordered ">
             <thead>
               <tr>
-                <th scope="row">id</th>
-                <th>Business Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Type</th>
+                <th scope="row">
+                  id {[arrow(false, "pk"), arrow(true, "pk")]}
+                </th>
+                <th>
+                  Business Name
+                  {[
+                    arrow(false, "business_name"),
+                    arrow(true, "business_name"),
+                  ]}
+                </th>
+                <th>Email {[arrow(false, "email"), arrow(true, "email")]}</th>
+                <th>
+                  Address
+                  {[
+                    arrow(false, "business_address"),
+                    arrow(true, "business_address"),
+                  ]}
+                </th>
+                <th>
+                  Type {[arrow(false, "is_staff"), arrow(true, "is_staff")]}
+                </th>
                 <th>Delete</th>
               </tr>
             </thead>
