@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import LogoBox from "../Components/LogoBox";
+import SignupLogin from "../Layouts/SignupLogin";
 import url from "../Utils/url";
 
 const Login = () => {
@@ -39,8 +39,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container mt-5 col-10 col-xs-9 col-sm-6 col-md-5 col-lg-4">
-      <LogoBox />
+    <SignupLogin>
       <form onSubmit={handleSubmit} noValidate className="needs-validation">
         <h3 className="mb-4 mt-4">Login</h3>
         <div className="form-group mb-4 mt-4">
@@ -84,7 +83,7 @@ const Login = () => {
           Don't have an account <Link to="/signup">Signup</Link>
         </p>
       </form>
-    </div>
+    </SignupLogin>
   );
 };
 
