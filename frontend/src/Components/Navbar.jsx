@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "../Utils/logo.png";
 
 const Navbar = () => {
   return (
@@ -6,7 +7,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-sm navbar-dark">
         <div className="container">
           <a className="navbar-brand text-dark" href="/">
-            Simfoni
+            <img style={{ maxWidth: 64 }} src={logo} alt="logo" />
           </a>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">

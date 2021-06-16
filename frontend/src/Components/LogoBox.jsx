@@ -1,9 +1,9 @@
 import React from "react";
-
+import logo from "../Utils/logo.png";
 const LogoBox = () => {
   return (
-    <div className="jumbotron py-5 mt-4">
-      <h1 className="text-center">Supplier portal</h1>
+    <div className="jumbotron mt-4">
+      <img style={{ maxWidth: "98%" }} src={logo} alt="logo" />
     </div>
   );
 };
