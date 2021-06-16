@@ -3,7 +3,6 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="conatiner-fluid py-5">
-      <hr />
       <br />
       <div className="row">
         <div className="mx-auto text-center">

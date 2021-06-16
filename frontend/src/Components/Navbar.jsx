@@ -4,7 +4,7 @@ import logo from "../Utils/logo.png";
 const Navbar = () => {
   return (
     <div className="mb-3 shadow">
-      <nav className="navbar navbar-expand-sm navbar-dark">
+      <nav className="navbar navbar-expand navbar-dark">
         <div className="container">
           <a className="navbar-brand text-dark" href="/">
             <img style={{ maxWidth: 64 }} src={logo} alt="logo" />
