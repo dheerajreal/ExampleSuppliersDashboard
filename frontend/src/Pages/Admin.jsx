@@ -12,6 +12,18 @@ const Admin = () => {
   const businessName = localStorage.getItem("business_name");
   const [accounts, setAccounts] = useState([]);
   const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [previousPage, setPreviousPage] = useState("");
+  const [nextPage, setNextPage] = useState("");
+
+  const pageNumberChange = (action) => {
+    if (action === "increment" && nextPage) {
+      setPage(page + 1);
+    }
+    if (action === "decrement" && previousPage) {
+      setPage(page - 1);
+    }
+  };
 
   useEffect(() => {
     axios
@@ -46,17 +58,23 @@ const Admin = () => {
 
   useEffect(() => {
     axios
-      .get(url + `/accounts?search=${search}`, {
+      .get(url + `/accounts?page=${page}&search=${search}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       })
-      .then((data) => setAccounts(data.data));
-  }, [search]);
+      .then((data) => {
+        setAccounts(data.data.results);
+        setNextPage(data.data.next);
+        setPreviousPage(data.data.previous);
+      });
+  }, [search, page]);
 
   // useEffect(() => {
   //   console.log(accounts);
-  // }, [accounts]);
+  //   console.log(nextPage);
+  //   console.log(previousPage);
+  // }, [accounts, nextPage, previousPage]);
 
   if (!refresh_token) {
     return <Redirect to="/login" />;
@@ -74,7 +92,10 @@ const Admin = () => {
         <div className="container">
           <input
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {
+              setPage(1);
+              setSearch(e.target.value);
+            }}
             type="search"
             className="form-control"
             placeholder="Search"
@@ -143,6 +164,30 @@ const Admin = () => {
               })}
             </tbody>
           </table>
+          {previousPage && (
+            <button
+              className="btn btn-sm"
+              onClick={(e) => pageNumberChange("decrement")}
+            >
+              previous
+            </button>
+          )}
+          {(previousPage || nextPage) && (
+            <span
+              style={{ cursor: "text", marginRight: 40, marginLeft: 40 }}
+              className="text-muted"
+            >
+              current page: {page}
+            </span>
+          )}
+          {nextPage && (
+            <button
+              className="btn btn-sm"
+              onClick={(e) => pageNumberChange("increment")}
+            >
+              next
+            </button>
+          )}
         </div>
         <Footer />
       </>
