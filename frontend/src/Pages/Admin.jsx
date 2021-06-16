@@ -11,6 +11,7 @@ const Admin = () => {
   const history = useHistory();
   const businessName = localStorage.getItem("business_name");
   const [accounts, setAccounts] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios
@@ -45,13 +46,13 @@ const Admin = () => {
 
   useEffect(() => {
     axios
-      .get(url + "/accounts", {
+      .get(url + `/accounts?search=${search}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       })
       .then((data) => setAccounts(data.data));
-  }, []);
+  }, [search]);
 
   // useEffect(() => {
   //   console.log(accounts);
@@ -68,6 +69,19 @@ const Admin = () => {
           <h1>Hello, {businessName === "null" ? "" : businessName} Admin</h1>
           <h2> </h2>
         </div>
+        <br />
+        <hr />
+        <div className="container">
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            type="text"
+            className="form-control"
+            placeholder="Search"
+            required
+          />
+        </div>
+
         <br />
         <hr />
         <div className="container">

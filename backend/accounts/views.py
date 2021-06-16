@@ -2,6 +2,7 @@ from rest_framework import generics, permissions
 from django.urls import reverse
 from django.shortcuts import get_object_or_404, redirect
 from accounts.models import Account, SupplierRepresentatives
+from rest_framework.filters import OrderingFilter, SearchFilter
 
 from .serializers import (AccountSerializer, RegisterSerializer,
                           SupplierProfileSerializer)
@@ -62,6 +63,8 @@ class AccountListView(generics.ListAPIView):
     queryset = Account.objects.all()
     permission_classes = [permissions.IsAdminUser]
     serializer_class = AccountSerializer
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ["business_name", "business_address", "email"]
 
 
 list_account_apiview = AccountListView.as_view()
