@@ -70,12 +70,12 @@ const Admin = () => {
           <h2> </h2>
         </div>
         <br />
-        <hr />
+        <br />
         <div className="container">
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            type="text"
+            type="search"
             className="form-control"
             placeholder="Search"
             required
