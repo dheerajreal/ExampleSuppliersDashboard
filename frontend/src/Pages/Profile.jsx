@@ -131,7 +131,7 @@ const Profile = () => {
               <div className="col">
                 <h3 className="mb-4 mt-4">Primary Representative</h3>
                 <div className="form-group mb-4 mt-4">
-                  <label>Email address</label>
+                  <label className="text-uppercase">Email address</label>
                   <br />
                   <input
                     value={primaryEmail}
@@ -146,7 +146,7 @@ const Profile = () => {
                   <div className="invalid-feedback">Please enter an email</div>
                 </div>
                 <div className="form-group mb-4 mt-4">
-                  <label>Name</label>
+                  <label className="text-uppercase">Name</label>
                   <br />
                   <input
                     value={primaryName}
@@ -160,7 +160,7 @@ const Profile = () => {
                   <div className="invalid-feedback">Please Enter your Name</div>
                 </div>
                 <div className="form-group mb-4 mt-4">
-                  <label>Phone number</label>
+                  <label className="text-uppercase">Phone number</label>
                   <br />
                   <input
                     value={primaryPhone}
@@ -184,7 +184,7 @@ const Profile = () => {
               <div className="col">
                 <h3 className="mb-4 mt-4">Secondary Representative</h3>
                 <div className="form-group mb-4 mt-4">
-                  <label>Email address</label>
+                  <label className="text-uppercase">Email address</label>
                   <br />
                   <input
                     value={secondaryEmail}
@@ -199,7 +199,7 @@ const Profile = () => {
                   <div className="invalid-feedback">Please enter an email</div>
                 </div>
                 <div className="form-group mb-4 mt-4">
-                  <label>Name</label>
+                  <label className="text-uppercase">Name</label>
                   <br />
                   <input
                     value={secondaryName}
@@ -213,7 +213,7 @@ const Profile = () => {
                   <div className="invalid-feedback">Please Enter your Name</div>
                 </div>
                 <div className="form-group mb-4 mt-4">
-                  <label>Phone number</label>
+                  <label className="text-uppercase">Phone number</label>
                   <br />
                   <input
                     value={secondaryPhone}
