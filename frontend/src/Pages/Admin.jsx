@@ -82,6 +82,7 @@ const Admin = () => {
       <span
         onClick={(e) => setOrdering(`${desc && "-"}${column}`)}
         style={{ cursor: "pointer" }}
+        key={`${desc && "-"}${column}`}
       >
         {!desc ? "⬆" : "⬇"}
       </span>
