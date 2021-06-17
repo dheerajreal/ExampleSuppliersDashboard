@@ -26,12 +26,11 @@ const Admin = () => {
     if (action === "decrement" && previousPage) {
       setPage(page - 1);
     }
-    setEditFormAccount({});
   };
 
   useEffect(() => {
     axios
-      .get(url + "/myaccount", {
+      .get(url + "/myaccount/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
@@ -61,9 +60,11 @@ const Admin = () => {
   }, [history]);
 
   useEffect(() => {
+    setEditFormAccount({});
+
     axios
       .get(
-        url + `/accounts?page=${page}&ordering=${ordering}&search=${search}`,
+        url + `/accounts/?page=${page}&ordering=${ordering}&search=${search}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -80,9 +81,9 @@ const Admin = () => {
   const arrow = (desc, column) => {
     return (
       <span
-        onClick={(e) => setOrdering(`${desc && "-"}${column}`)}
+        onClick={(e) => setOrdering(`${desc ? "-" : ""}${column}`)}
         style={{ cursor: "pointer" }}
-        key={`${desc && "-"}${column}`}
+        key={`${desc ? "-" : ""}${column}`}
       >
         {!desc ? "⬆" : "⬇"}
       </span>
@@ -112,7 +113,6 @@ const Admin = () => {
             value={search}
             onChange={(e) => {
               setPage(1);
-              setEditFormAccount({});
               setSearch(e.target.value);
             }}
             type="search"

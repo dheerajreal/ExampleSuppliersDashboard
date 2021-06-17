@@ -11,7 +11,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(url + "/myaccount", {
+      .get(url + "/myaccount/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },

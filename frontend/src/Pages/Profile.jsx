@@ -21,7 +21,7 @@ const Profile = () => {
   const history = useHistory();
   useEffect(() => {
     axios
-      .get(url + "/myaccount", {
+      .get(url + "/myaccount/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
@@ -52,7 +52,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get(url + "/profile", {
+      .get(url + "/profile/", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
