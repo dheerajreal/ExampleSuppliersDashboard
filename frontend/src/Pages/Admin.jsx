@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import Footer from "../Components/Footer";
+import ModalForm from "../Components/ModalForm";
 import Navbar from "../Components/Navbar";
 import url from "../Utils/url";
 
@@ -16,6 +17,7 @@ const Admin = () => {
   const [previousPage, setPreviousPage] = useState("");
   const [nextPage, setNextPage] = useState("");
   const [ordering, setOrdering] = useState("-pk");
+  const [editFormAccount, setEditFormAccount] = useState({});
 
   const pageNumberChange = (action) => {
     if (action === "increment" && nextPage) {
@@ -24,6 +26,7 @@ const Admin = () => {
     if (action === "decrement" && previousPage) {
       setPage(page - 1);
     }
+    setEditFormAccount({});
   };
 
   useEffect(() => {
@@ -108,6 +111,7 @@ const Admin = () => {
             value={search}
             onChange={(e) => {
               setPage(1);
+              setEditFormAccount({});
               setSearch(e.target.value);
             }}
             type="search"
@@ -144,6 +148,7 @@ const Admin = () => {
                 <th>
                   Type {[arrow(false, "is_staff"), arrow(true, "is_staff")]}
                 </th>
+                <th>Edit</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -156,6 +161,20 @@ const Admin = () => {
                     <td>{acc.email}</td>
                     <td>{acc.business_address}</td>
                     <td>{acc.is_supplier ? "Supplier" : "Staff"}</td>
+                    <td>
+                      <button
+                        className="btn btn-sm btn-outline-primary"
+                        onClick={(e) => {
+                          // console.log(acc);
+                          setEditFormAccount({
+                            ...acc,
+                            visible: true,
+                          });
+                        }}
+                      >
+                        Edit
+                      </button>
+                    </td>
                     <td>
                       <button
                         className="btn btn-sm btn-outline-danger"
@@ -220,6 +239,7 @@ const Admin = () => {
           )}
         </div>
         <Footer />
+        <ModalForm item={{ ...editFormAccount }} />
       </>
     );
   }
