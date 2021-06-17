@@ -4,7 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
 import url from "../Utils/url";
 
-const ModalForm = ({ item }) => {
+const ModalForm = ({ item, update }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
@@ -26,6 +26,7 @@ const ModalForm = ({ item }) => {
     setAddress("");
     setEmail("");
     setPk("");
+    update({ ...e });
   };
 
   const handleSubmit = (e) => {

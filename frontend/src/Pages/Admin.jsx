@@ -18,6 +18,7 @@ const Admin = () => {
   const [nextPage, setNextPage] = useState("");
   const [ordering, setOrdering] = useState("-pk");
   const [editFormAccount, setEditFormAccount] = useState({});
+  const [update, setUpdate] = useState("");
 
   const pageNumberChange = (action) => {
     if (action === "increment" && nextPage) {
@@ -76,7 +77,7 @@ const Admin = () => {
         setNextPage(data.data.next);
         setPreviousPage(data.data.previous);
       });
-  }, [search, page, ordering]);
+  }, [search, page, ordering, update]);
 
   const arrow = (desc, column) => {
     return (
@@ -245,7 +246,7 @@ const Admin = () => {
         </div>
 
         <Footer />
-        <ModalForm item={{ ...editFormAccount }} />
+        <ModalForm item={{ ...editFormAccount }} update={setUpdate} />
       </>
     );
   }
