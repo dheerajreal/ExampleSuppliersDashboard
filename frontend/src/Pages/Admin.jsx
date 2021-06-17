@@ -214,31 +214,36 @@ const Admin = () => {
               })}
             </tbody>
           </table>
-          {previousPage && (
-            <button
-              className="btn btn-sm"
-              onClick={(e) => pageNumberChange("decrement")}
-            >
-              previous
-            </button>
-          )}
-          {(previousPage || nextPage) && (
-            <span
-              style={{ cursor: "text", marginRight: 40, marginLeft: 40 }}
-              className="text-muted"
-            >
-              current page: {page}
-            </span>
-          )}
-          {nextPage && (
-            <button
-              className="btn btn-sm"
-              onClick={(e) => pageNumberChange("increment")}
-            >
-              next
-            </button>
-          )}
+          <nav aria-label="Pagination">
+            <ul className="pagination justify-content-end">
+              <li className={previousPage ? "page-item" : "d-none"}>
+                <button
+                  className="page-link"
+                  onClick={(e) => pageNumberChange("decrement")}
+                >
+                  previous
+                </button>
+              </li>
+              <li
+                className={
+                  previousPage || nextPage ? "page-item disabled" : "d-none"
+                }
+              >
+                <button className="page-link">Current page: {page}</button>
+              </li>
+
+              <li className={nextPage ? "page-item" : "d-none"}>
+                <button
+                  className="page-link"
+                  onClick={(e) => pageNumberChange("increment")}
+                >
+                  next
+                </button>
+              </li>
+            </ul>
+          </nav>
         </div>
+
         <Footer />
         <ModalForm item={{ ...editFormAccount }} />
       </>
