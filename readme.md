@@ -36,11 +36,6 @@ demo backend url: https://supplierdemo.herokuapp.com/
 - profile edit for suppliers
 - view and delete accounts from admin page
 
-### features pending
-
-- search accounts on admin page
-- edit popup for accounts
-
 ### regex
 
 containing one Capital and one lowercase letter, one digit, one special character
